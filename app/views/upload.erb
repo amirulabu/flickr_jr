@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>flickr jr</h1>
+  <p>
+    <% if session[:userid] == nil %>
+      <a href="/login">login</a>
+    <% else %>
+      Welcome back, <%= @theuser %> (<a href="/logout">logout</a>)
+    <% end %>
+  </p>
+
+
+
+</div>

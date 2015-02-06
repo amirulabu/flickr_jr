@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>flickr jr</h1>
+  <p>
+    <% if session[:userid] == nil %>
+      <a href="/login">login</a>
+    <% else %>
+      Welcome back, <%= @theuser.capitalize %> (<a href="/logout">logout</a>) | <a href="/createalbum">Create album</a>
+    <% end %>
+  </p>
+</div>
+
+<% if session[:userid] %>
+<div class="container">
+  <h1>All Albums</h1>
+   <% @albums.each do |x|%>
+   <a href="/albums/<%= x.id %>">
+   <%= x.title %>
+   </a>
+   <% end %>
+
+</div>
+<% end %>

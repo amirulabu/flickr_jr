@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Create an album</h1>
+  <p>
+    <% if session[:userid] == nil %>
+      <a href="/login">login</a>
+    <% else %>
+      <%= @theuser.capitalize %> (<a href="/logout">logout</a>) | <a href="/">Home</a>
+    <% end %>
+  </p>
+  <form action="/createalbum" method="post">
+  Album title:
+  <input type="text" name="title">
+  <input type="submit" value="Submit">
+  </form>
+
+
+</div>

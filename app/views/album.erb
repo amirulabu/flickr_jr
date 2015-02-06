@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Album: <%= @albumtitle %></h1>
+  <p>
+    <% if session[:userid] == nil %>
+      <a href="/login">login</a>
+    <% else %>
+      <%= @theuser.capitalize %> (<a href="/logout">logout</a>) | <a href="/">Home</a> | <a href="/createalbum">Create album</a>
+    <% end %>
+  </p>
+  <form action="/albums/<%= params[:id]%>" method="post" enctype="multipart/form-data">
+    Title photo:
+    <input type="text" name="title"><br><br>
+    <input type="file" name="image" accept="image/*"><br><br>
+    <input type="submit">
+  </form>
+
+
+</div>
+
+
+<div class="container">
+  <% @album.photos.each do |t| %>
+  <img src="<%= t.file%>" width="200px"><br>
+  <%= t.title %>
+  <br><hr><br>
+  <% end %>
+</div>
