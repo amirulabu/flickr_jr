@@ -2,6 +2,7 @@ enable :sessions
 
 get '/' do
   # Look in app/views/index.erb
+  @allphoto = Photo.all
   if session[:userid]
     @theuser = User.find(session[:userid]).username
     @albums = User.find(session[:userid]).albums
@@ -52,15 +53,19 @@ get '/albums' do
 end
 
 get '/albums/:id' do
-  @album = Album.find(params[:id])
-  @theuser = User.find(session[:userid]).username
+    @album = Album.find(params[:id])
+  if session[:userid]
+    @theuser = User.find(session[:userid]).username
+  end
   erb :album
 end
 
 post '/albums/:id' do
+  if session[:userid]
     photo = Album.find(params[:id]).photos.new()
     photo.file = params[:image]
     photo.title = params[:title]
     photo.save
+  end
     redirect back
 end

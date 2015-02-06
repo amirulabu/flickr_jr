@@ -4,18 +4,31 @@
     <% if session[:userid] == nil %>
       <a href="/login">login</a>
     <% else %>
-      Welcome back, <%= @theuser.capitalize %> (<a href="/logout">logout</a>) | <a href="/createalbum">Create album</a>
+      Welcome back, <%= @theuser %> (<a href="/logout">logout</a>) | <a href="/createalbum">Create album</a>
     <% end %>
   </p>
 </div>
 
+<div class="container">
+  <h1>All Photos</h1>
+    <ul id="slider1">
+      <% @allphoto.each do |x|%>
+      <li><a href="/albums/<%= x.album_id %>"><img src="<%= x.file %>"></a></li>
+   <% end %>
+    </ul>
+</div>
+
+
 <% if session[:userid] %>
 <div class="container">
-  <h1>All Albums</h1>
+  <h1>All <%= @theuser %> Albums</h1>
    <% @albums.each do |x|%>
-   <a href="/albums/<%= x.id %>">
-   <%= x.title %>
-   </a>
+    <a href="/albums/<%= x.id %>">
+    <%= x.title %>
+    <br>
+    <% x.photos.each do |y| %>
+    <img src="<%= y.file%>" width="50px">
+    <% end %>
    <% end %>
 
 </div>

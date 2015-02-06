@@ -4,4 +4,13 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+
+  $('#slider1').bxSlider({
+  mode: 'fade',
+  auto: true,
+  autoControls: true,
+  pause: 2000,
+  slideHeight: 200
+  });
+
 });
